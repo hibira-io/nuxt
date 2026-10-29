@@ -1,6 +1,6 @@
 {
   "name": "@hibira-io/nuxt",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Nuxt 3, 4 and 2 module for Hibira and other Pusher-compatible servers: auto-imported realtime composables (channels, events, presence, client events, LLM streaming) and server utils",
   "keywords": [
     "nuxt",

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.1
+
+The package homepage on npm now links to https://hibira.io. No code changes.
+
 ## 0.1.0
 
 First release: a Nuxt 3 and 4 module (auto-imported @hibira-io/vue
