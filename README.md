@@ -134,7 +134,7 @@ const { text, done, error } = useStream(() => `private-conversation-${props.conv
 ```
 
 `streamToChannel()` takes the Anthropic, OpenAI, Gemini and Vercel AI SDK
-streams as they are, batches tokens into a few events per second, and keeps
+streams as they are, batches tokens into about ten events per second, and keeps
 each event under the plan's message size. Everyone subscribed sees the
 answer as it is written, and late joiners still get the whole text. Options
 are in the [@hibira-io/vue README](https://github.com/hibira-io/vue#streaming-llm-output).
