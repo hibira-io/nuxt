@@ -1,0 +1,46 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ["20", "22", "24"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm test
+      - name: Package contents
+        run: npm pack --dry-run
+
+  # Builds a Nuxt 4, 3 and 2 app with the packed module.
+  fixtures:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        fixture: [nuxt4, nuxt3, nuxt2]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      # Until @hibira-io/vue is on npm, build against its main branch.
+      - name: "@hibira-io/vue from npm or main"
+        id: vue
+        run: |
+          if npm view @hibira-io/vue@0.1.0 version >/dev/null 2>&1; then exit 0; fi
+          git clone --depth 1 https://github.com/hibira-io/vue "$RUNNER_TEMP/vue"
+          echo "tgz=$RUNNER_TEMP/vue/$(cd "$RUNNER_TEMP/vue" && npm pack --silent)" >> "$GITHUB_OUTPUT"
+      - run: ./test/fixtures.sh ${{ matrix.fixture }}
+        env:
+          HIBIRA_VUE_TGZ: ${{ steps.vue.outputs.tgz }}
