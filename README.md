@@ -44,6 +44,11 @@ NUXT_HIBIRA_APP_ID=your-app-id
 NUXT_HIBIRA_SECRET=your-app-secret
 ```
 
+The secret is shown only once, when you create the app, so copy it then.
+On the Free plan, add your site's origin (for example
+`http://localhost:3000`) to the app's allowed origins, or browsers can't
+connect.
+
 Use the composables in any component, no imports needed:
 
 ```vue
