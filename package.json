@@ -1,0 +1,69 @@
+{
+  "name": "@hibira-io/nuxt",
+  "version": "0.1.0",
+  "description": "Nuxt 3, 4 and 2 module for Hibira and other Pusher-compatible servers: auto-imported realtime composables (channels, events, presence, client events, LLM streaming) and server utils",
+  "keywords": [
+    "nuxt",
+    "nuxt-module",
+    "nuxt3",
+    "nuxt2",
+    "vue",
+    "pusher",
+    "pusher-js",
+    "websocket",
+    "realtime",
+    "presence",
+    "llm",
+    "ai",
+    "streaming",
+    "hibira"
+  ],
+  "homepage": "https://github.com/hibira-io/nuxt#readme",
+  "bugs": {
+    "url": "https://github.com/hibira-io/nuxt/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hibira-io/nuxt.git"
+  },
+  "license": "MIT",
+  "author": "Hibira (https://hibira.io)",
+  "type": "module",
+  "main": "./nuxt2/module.cjs",
+  "types": "./module.d.ts",
+  "exports": {
+    ".": {
+      "types": "./module.d.ts",
+      "import": "./module.mjs",
+      "require": "./nuxt2/module.cjs"
+    },
+    "./nuxt2": "./nuxt2/module.cjs",
+    "./runtime/*": "./runtime/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "module.mjs",
+    "module.d.ts",
+    "nuxt2",
+    "runtime",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@hibira-io/vue": "^0.1.0",
+    "@nuxt/kit": "^3.0.0 || ^4.0.0",
+    "pusher": "^5.3.4",
+    "pusher-js": "^8.6.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}
