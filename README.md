@@ -44,6 +44,11 @@ NUXT_HIBIRA_APP_ID=your-app-id
 NUXT_HIBIRA_SECRET=your-app-secret
 ```
 
+The secret is shown only once, when you create the app, so copy it then.
+On the Free plan, add your site's origin (for example
+`http://localhost:3000`) to the app's allowed origins, or browsers can't
+connect.
+
 Use the composables in any component, no imports needed:
 
 ```vue
@@ -134,7 +139,7 @@ const { text, done, error } = useStream(() => `private-conversation-${props.conv
 ```
 
 `streamToChannel()` takes the Anthropic, OpenAI, Gemini and Vercel AI SDK
-streams as they are, batches tokens into a few events per second, and keeps
+streams as they are, batches tokens into about ten events per second, and keeps
 each event under the plan's message size. Everyone subscribed sees the
 answer as it is written, and late joiners still get the whole text. Options
 are in the [@hibira-io/vue README](https://github.com/hibira-io/vue#streaming-llm-output).

@@ -6,8 +6,6 @@
     "start": "nuxt start"
   },
   "dependencies": {
-    "@hibira-io/nuxt": "file:../../../.pack/hibira-io-nuxt-0.1.0.tgz",
-    "@hibira-io/vue": "^0.1.0",
     "nuxt": "^2.18.1",
     "pusher": "^5.3.4",
     "webpack": "^4.47.0"

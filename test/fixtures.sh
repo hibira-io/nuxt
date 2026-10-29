@@ -20,7 +20,7 @@ for fx in "${@:-nuxt4 nuxt3 nuxt2}"; do
     cd "$root/test/fixtures/$name"
     extra=("$tgz")
     if [ -n "${HIBIRA_VUE_TGZ:-}" ]; then extra+=("$HIBIRA_VUE_TGZ"); fi
-    npm install --no-package-lock --no-audit --no-fund "${extra[@]}"
+    npm install --no-save --no-package-lock --no-audit --no-fund "${extra[@]}"
     if [ "$name" = nuxt2 ]; then NODE_OPTIONS=--openssl-legacy-provider npm run build; else npm run build; fi
     echo "::endgroup::"
   done
