@@ -1,5 +1,7 @@
 # @hibira-io/nuxt
 
+![@hibira-io/nuxt](.github/cover.jpg)
+
 [![npm](https://img.shields.io/npm/v/@hibira-io/nuxt)](https://www.npmjs.com/package/@hibira-io/nuxt)
 [![ci](https://github.com/hibira-io/nuxt/actions/workflows/ci.yml/badge.svg)](https://github.com/hibira-io/nuxt/actions/workflows/ci.yml)
 
