@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2
+
+- README: cover image and screenshots.
+
 ## 0.1.1
 
 The package homepage on npm now links to https://hibira.io. No code changes.
