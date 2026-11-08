@@ -34,8 +34,20 @@ test('the Nuxt 2 module fills runtime config and adds the plugin', async () => {
   assert.equal(ctx.options.publicRuntimeConfig.hibira.host, 'h');
   assert.equal(ctx.options.publicRuntimeConfig.hibira.tls, false);
   assert.equal(ctx.options.publicRuntimeConfig.hibira.secret, undefined, 'secret stays private');
-  assert.deepEqual(ctx.options.privateRuntimeConfig.hibira, { appId: 'a', secret: 's' });
+  assert.deepEqual(ctx.options.privateRuntimeConfig.hibira, { appId: 'a', secret: 's', encryptionMasterKey: '' });
   assert.equal(plugins[0].mode, 'client');
   assert.ok(ctx.options.build.transpile.includes('@hibira-io/vue'));
   assert.equal(mod.meta.name, '@hibira-io/nuxt');
+});
+
+test('the Nuxt 2 module keeps the encryption key server side', async () => {
+  const { default: mod } = await import('../nuxt2/module.cjs');
+  const ctx = {
+    options: { hibira: { key: 'k', appId: 'a', secret: 's', encrypted: true, encryptionMasterKey: 'mk' }, build: { transpile: [] } },
+    addPlugin: () => {},
+  };
+  mod.call(ctx, {});
+  assert.equal(ctx.options.publicRuntimeConfig.hibira.encrypted, true);
+  assert.equal(ctx.options.publicRuntimeConfig.hibira.encryptionMasterKey, undefined);
+  assert.equal(ctx.options.privateRuntimeConfig.hibira.encryptionMasterKey, 'mk');
 });

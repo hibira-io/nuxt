@@ -18,17 +18,19 @@ export default defineNuxtModule({
     tls: true,
     authEndpoint: '/api/hibira/auth',
     userAuthEndpoint: '',
+    encrypted: false,
     options: {},
   },
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url);
-    const { appId, secret, ...pub } = options;
+    const { appId, secret, encryptionMasterKey, ...pub } = options;
 
     // Public config reaches the browser (NUXT_PUBLIC_HIBIRA_KEY...); the app
-    // id and secret stay on the server (NUXT_HIBIRA_APP_ID, NUXT_HIBIRA_SECRET).
+    // id, secret and encryption key stay on the server (NUXT_HIBIRA_APP_ID,
+    // NUXT_HIBIRA_SECRET, NUXT_HIBIRA_ENCRYPTION_MASTER_KEY).
     const rc = nuxt.options.runtimeConfig;
     rc.public.hibira = { ...pub, ...(rc.public.hibira || {}) };
-    rc.hibira = { appId: appId || '', secret: secret || '', ...(rc.hibira || {}) };
+    rc.hibira = { appId: appId || '', secret: secret || '', encryptionMasterKey: encryptionMasterKey || '', ...(rc.hibira || {}) };
 
     nuxt.options.build.transpile.push(resolve('./runtime'));
 

@@ -1,6 +1,6 @@
 {
   "name": "@hibira-io/nuxt",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Nuxt 3, 4 and 2 module for Hibira and other Pusher-compatible servers: auto-imported realtime composables (channels, events, presence, client events, LLM streaming) and server utils",
   "keywords": [
     "nuxt",
@@ -57,7 +57,7 @@
     "test": "node --test test/*.test.mjs"
   },
   "dependencies": {
-    "@hibira-io/vue": "^0.1.0",
+    "@hibira-io/vue": "^0.3.1",
     "@nuxt/kit": "^3.0.0 || ^4.0.0",
     "pusher": "^5.3.4",
     "pusher-js": "^8.6.0"

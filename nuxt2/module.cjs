@@ -10,17 +10,18 @@ const DEFAULTS = {
   tls: true,
   authEndpoint: '/api/hibira/auth',
   userAuthEndpoint: '',
+  encrypted: false,
   options: {},
 };
 
 module.exports = function hibiraModule(moduleOptions) {
-  const { appId, secret, ...pub } = { ...DEFAULTS, ...this.options.hibira, ...moduleOptions };
+  const { appId, secret, encryptionMasterKey, ...pub } = { ...DEFAULTS, ...this.options.hibira, ...moduleOptions };
 
   // Public config reaches the browser; the app id and secret stay on the server.
   this.options.publicRuntimeConfig = this.options.publicRuntimeConfig || {};
   this.options.publicRuntimeConfig.hibira = { ...pub, ...(this.options.publicRuntimeConfig.hibira || {}) };
   this.options.privateRuntimeConfig = this.options.privateRuntimeConfig || {};
-  this.options.privateRuntimeConfig.hibira = { appId: appId || '', secret: secret || '', ...(this.options.privateRuntimeConfig.hibira || {}) };
+  this.options.privateRuntimeConfig.hibira = { appId: appId || '', secret: secret || '', encryptionMasterKey: encryptionMasterKey || '', ...(this.options.privateRuntimeConfig.hibira || {}) };
 
   // Webpack 4 cannot parse ?. and ??, so Babel compiles these.
   this.options.build.transpile.push('@hibira-io/vue', '@hibira-io/nuxt');

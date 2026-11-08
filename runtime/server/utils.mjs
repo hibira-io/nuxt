@@ -8,7 +8,8 @@ let signature = '';
 /**
  * A `pusher` (Node) client for the app in runtimeConfig: trigger events,
  * authorize channels, read channel info. Needs NUXT_HIBIRA_APP_ID and
- * NUXT_HIBIRA_SECRET (and NUXT_PUBLIC_HIBIRA_KEY) at runtime.
+ * NUXT_HIBIRA_SECRET (and NUXT_PUBLIC_HIBIRA_KEY) at runtime, and
+ * NUXT_HIBIRA_ENCRYPTION_MASTER_KEY for private-encrypted- channels.
  */
 export function useHibiraServer(event) {
   const config = useRuntimeConfig(event);
@@ -23,6 +24,7 @@ export function useHibiraServer(event) {
     port: String(priv.port || pub.port || (tls ? 443 : 80)),
     useTLS: tls,
   };
+  if (priv.encryptionMasterKey) settings.encryptionMasterKeyBase64 = String(priv.encryptionMasterKey);
   if (!settings.appId || !settings.key || !settings.secret) {
     throw new Error('Hibira: set NUXT_HIBIRA_APP_ID, NUXT_HIBIRA_SECRET and NUXT_PUBLIC_HIBIRA_KEY');
   }

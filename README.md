@@ -156,7 +156,20 @@ are in the [@hibira-io/vue README](https://github.com/hibira-io/vue#streaming-ll
 | `tls` | `true` | `false` for a local server |
 | `authEndpoint` | `'/api/hibira/auth'` | channel auth for private and presence channels |
 | `userAuthEndpoint` | | user authentication (`pusher.signin()`) |
+| `encrypted` | `false` | load the pusher-js build that can decrypt `private-encrypted-` channels |
+| `encryptionMasterKey` | | server only; better set as `NUXT_HIBIRA_ENCRYPTION_MASTER_KEY` |
 | `options` | `{}` | more [pusher-js options](https://github.com/pusher/pusher-js#configuration) (JSON) |
+
+### Encrypted channels
+
+On `private-encrypted-` channels the server encrypts each event and only
+subscribers can read it; Hibira relays ciphertext it cannot decrypt. Set
+`encrypted: true`, and give the server a 32-byte key
+(`NUXT_HIBIRA_ENCRYPTION_MASTER_KEY=$(openssl rand -base64 32)`).
+`useHibiraServer()` then encrypts what you trigger on these channels, and
+`authorizeChannel()` in your auth route returns the channel's key to the
+subscriber. The browser loads the larger pusher-js build only when
+`encrypted` is on. Client events are not allowed on encrypted channels.
 
 For options that need functions, such as a custom auth handler, use the
 `hibira:options` hook in a client plugin that runs first:
