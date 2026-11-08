@@ -12,7 +12,9 @@ export default defineNuxtPlugin({
     // Last chance to change pusher-js options, e.g. a customHandler that
     // functions in nuxt.config cannot express.
     await nuxtApp.callHook('hibira:options', options);
-    const hibira = createHibira({ appKey: config.key, options });
+    // The pusher-js build with NaCl, loaded only when encrypted channels are on.
+    const Pusher = config.encrypted ? (await import('pusher-js/with-encryption')).default : undefined;
+    const hibira = createHibira({ appKey: config.key, options, Pusher });
     nuxtApp.vueApp.use(hibira);
     return { provide: { hibira } };
   },

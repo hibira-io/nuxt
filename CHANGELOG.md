@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0
+
+- Encrypted channels: `encrypted: true` loads the pusher-js build that can
+  decrypt `private-encrypted-` channels (only then, as a separate chunk),
+  and `NUXT_HIBIRA_ENCRYPTION_MASTER_KEY` makes `useHibiraServer()`
+  encrypt and authorize them. Nuxt 3, 4 and 2.
+- Needs @hibira-io/vue 0.3.0.
+
 ## 0.1.2
 
 - README: cover image and screenshots.
