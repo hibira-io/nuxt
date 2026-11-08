@@ -6,7 +6,7 @@
   decrypt `private-encrypted-` channels (only then, as a separate chunk),
   and `NUXT_HIBIRA_ENCRYPTION_MASTER_KEY` makes `useHibiraServer()`
   encrypt and authorize them. Nuxt 3, 4 and 2.
-- Needs @hibira-io/vue 0.3.0.
+- Needs @hibira-io/vue 0.3.1 (0.3.0 does not build on Nuxt 2).
 
 ## 0.1.2
 
